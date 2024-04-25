@@ -1,6 +1,7 @@
 import sys
 sys.setrecursionlimit(10**6)
 input = sys.stdin.readline
+
 def dfs(v):
     visited[v] = 1
     for i in graph[v]:
