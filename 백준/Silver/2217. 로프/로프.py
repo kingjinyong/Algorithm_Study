@@ -1,15 +1,16 @@
 
 n = int(input())
-lope = []
-for i in range(n):
-    lope.append(int(input()))
+rope = [0] * 10001
 
-lope = sorted(lope, reverse=True)
-max_w = 0
+for _ in range(n):
+    rope[int(input())] += 1
 
-while lope:
-    length = len(lope)
-    w = lope.pop() * length
-    if w > max_w:
-        max_w = w
-print(max_w)
+result = 0
+count = n
+
+for i in range(1, 10001, 1):
+    if rope[i] > 0:
+        result = max(result, i*count)
+        count -= rope[i]
+
+print(result)
