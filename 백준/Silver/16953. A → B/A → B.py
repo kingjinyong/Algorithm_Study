@@ -1,30 +1,17 @@
 from collections import deque
-import sys
-input = sys.stdin.readline
+a,b = map(int,input().split())
+q = deque()
+q.append((a,1))
+r = 0
 
-a, b = map(int, input().split())
-dic = {a:0}
-if a == b:
-    print(1)
+while(q):
+    n,t = q.popleft()
+    if n > b:
+        continue
+    if n == b:
+        print(t)
+        break
+    q.append((int(str(n)+"1"),t+1))
+    q.append((n*2,t+1))
 else:
-    queue = deque([a])
-
-    while queue:
-        x = queue.popleft()
-
-        if x == b:
-            print(dic[x] + 1)
-            break
-        if x > b:
-            continue
-
-        if x * 2 not in dic:
-            dic[x * 2] = dic[x] + 1
-            queue.append(x * 2)
-
-        if int(str(x) + '1') not in dic:
-            dic[int(str(x) + '1')] = dic[x] + 1
-            queue.append(int(str(x) + '1'))
-
-    else:
-        print(-1)
+    print(-1)
