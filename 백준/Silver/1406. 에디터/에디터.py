@@ -1,24 +1,23 @@
 import sys
 
-st1 = list(sys.stdin.readline().rstrip())
-st2 = []
+s = list(sys.stdin.readline().rstrip())
+s2 = []
+c = len(s)
 
-for _ in range(int(sys.stdin.readline())):
-    command = list(sys.stdin.readline().split())
-    if command[0] == 'L':
-        if st1:
-            st2.append(st1.pop())
+test = int(sys.stdin.readline())
+for t in range(test):
+    a = list(sys.stdin.readline().split())
 
-    elif command[0] == 'D':
-        if st2:
-            st1.append(st2.pop())
-
-    elif command[0] == 'B':
-        if st1:
-            st1.pop()
-
-    else:
-        st1.append(command[1])
-
-st1.extend(reversed(st2))
-print(''.join(st1))
+    if a[0] == 'P':
+        s.append(a[1])
+    elif a[0] == 'L':
+        if s:
+            s2.append(s.pop())
+    elif a[0] == 'D':
+        if s2:
+            s.append(s2.pop())
+    elif a[0] == 'B':
+        if s:
+            s.pop()
+s.extend(reversed(s2))
+print(''.join(s))
