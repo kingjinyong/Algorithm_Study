@@ -1,16 +1,17 @@
+import sys
+input = sys.stdin.readline
+
 n, k = map(int, input().split())
 ary = []
-for i in range(n):
+for _ in range(n):
     ary.append(int(input()))
-# print(ary)
-ary = sorted(ary, reverse=True)
-# print(ary)
-count = 0
-for i in ary:
-    if i <= k:
-        count += k//i
-        k %= i
 
-    if k == 0:
-        break
-print(count)
+ary.sort(reverse=True)
+cnt = 0
+i = 0
+while k != 0 and i < len(ary):
+    if ary[i] <= k:
+        cnt += k//ary[i]
+        k %= ary[i]
+    i += 1
+print(cnt)
