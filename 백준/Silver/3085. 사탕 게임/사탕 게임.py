@@ -1,43 +1,41 @@
-def check(data):
-    max_cnt = 1
-    for i in range(N):
+import sys
+input = sys.stdin.readline
+
+n = int(input())
+ary = []
+for _ in range(n):
+    ary.append(list(input()))
+# print(ary)
+def check(a):
+    mcnt = 1
+    for i in range(n):
         cnt = 1
-        for j in range(1, N):
-            if data[i][j] == data[i][j-1]:
+        for j in range(1, n):
+            if a[i][j-1] == a[i][j]:
                 cnt += 1
             else:
                 cnt = 1
-            max_cnt = max(max_cnt, cnt)
+            mcnt = max(mcnt, cnt)
 
         cnt = 1
-        for j in range(1, N):
-            if data[j][i] == data[j-1][i]:
+        for j in range(1, n):
+            if a[j-1][i] == a[j][i]:
                 cnt += 1
             else:
                 cnt = 1
-            max_cnt = max(max_cnt, cnt)
-    
-    return max_cnt
+            mcnt = max(mcnt, cnt)
 
-N = int(input())
-data = [list(input()) for _ in range(N)]
-ans = 0
+    return mcnt
+m = 0
+for i in range(n):
+    for j in range(n):
+        if i + 1 < n:
+            ary[i][j], ary[i+1][j] = ary[i+1][j], ary[i][j]
+            m = max(m, check(ary))
+            ary[i][j], ary[i+1][j] = ary[i+1][j], ary[i][j]
+        if j + 1 < n:
+            ary[i][j], ary[i][j+1] = ary[i][j+1], ary[i][j]
+            m = max(m, check(ary))
+            ary[i][j], ary[i][j+1] = ary[i][j+1], ary[i][j]
 
-for i in range(N):
-    for j in range(N):
-        if j + 1 < N: # 열 범위 체크
-            # 인접한 것끼리 바꿔주기
-            data[i][j], data[i][j+1] = data[i][j+1], data[i][j]
-            cnt = check(data)
-            ans = max(ans, cnt)
-            # 바꾼 것 원래대로 돌려놓기
-            data[i][j], data[i][j+1] = data[i][j+1], data[i][j]
-
-        if i + 1 < N: # 행 범위 체크
-            data[i][j], data[i+1][j] = data[i+1][j], data[i][j]
-            cnt = check(data)
-            ans = max(ans, cnt)
-            # 바꾼 것 원래대로 돌려놓기
-            data[i][j], data[i+1][j] = data[i+1][j], data[i][j]
-
-print(ans)
+print(m)
