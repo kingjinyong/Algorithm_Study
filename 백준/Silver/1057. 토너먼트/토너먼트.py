@@ -11,6 +11,8 @@
 # 김지민: 8//2, 임한수: 9//2 + 1
 # 김지민: kim//2, 임한수: lim//2 + 1
 
+import sys
+input = sys.stdin.readline
 r, kim, lim = map(int, input().split())
 c = 0
 while(True):
