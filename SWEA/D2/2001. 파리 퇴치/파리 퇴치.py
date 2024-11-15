@@ -1,21 +1,18 @@
 test = int(input())
-for t in range(1, test+1):
-    area = []
-
+for t in range(1, test + 1):
     n, m = map(int, input().split())
-    for i in range(n):
-        area.append(list(map(int, input().split())))
-
-    max = 0
+    fly_ary = [list(map(int, input().split())) for _ in range(n)]
+    dead_fly = []
     for i in range(n - m + 1):
         for j in range(n - m + 1):
-            temp = 0
-            for k in range(m):
-                for l in range(m):
-                    temp += area[i + k][j + l]
-            if temp > max:
-                max = temp
-    print('#', t, ' ', max, sep='')
+            dead = 0
 
-    # 5 2 -> i를 3까지 가능
-    # 5 3 -> i를 2까지 가능
+            for _i in range(m):
+                for _j in range(m):
+                    dead += fly_ary[i+_i][j+_j]
+            dead_fly.append(dead)
+    print("#", end='')
+    print(t, end=' ')
+    print(max(dead_fly))
+
+
