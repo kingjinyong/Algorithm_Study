@@ -1,19 +1,33 @@
-# test = int(input())
-test = 10
+test = 10  # 테스트 반복 횟수
 for t in range(1, test + 1):
-    n = int(input())
-    ary = list(input())
+    n = int(input())  # 수식의 길이
+    word = list(input())
 
-    stk = []
-    while ary:
-        if ary[-1].isdigit():
-            stk.append(int(ary.pop()))
-        elif ary[-1] == '*':
-            ary.pop()
-            stk.append(stk.pop()*int(ary.pop()))
+    suffix = []
+    op = []
+    # 우선 순위
+    dic_v = {'*':2, '+':1}
+
+    for i in word:
+        if i in dic_v:
+            while op and dic_v[op[-1]] >= dic_v[i]:
+                suffix.append(op.pop())
+            op.append(i)
         else:
-            ary.pop()
+            suffix.append(int(i))
+    while op:
+        suffix.append(op.pop())
+
+    numbers = []
+    for i in suffix:
+        if i == '+':
+            numbers.append(numbers.pop() + numbers.pop())
+        elif i == '*':
+            numbers.append(numbers.pop()*numbers.pop())
+        else:
+            numbers.append(i)
 
     print("#", end='')
     print(t, end=' ')
-    print(sum(stk))
+    print(numbers[-1])
+
