@@ -14,12 +14,7 @@ class Solution {
         int compareA = nums.length/2;
         int compareB = hs.size();
 
-        if (compareB <= compareA){
-            return compareB;
-        }
-        else {
-            return compareA;
-        }
-        }
+        return Math.min(compareA, compareB);
         
     }
+}
