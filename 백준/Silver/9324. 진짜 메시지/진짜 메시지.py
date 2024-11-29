@@ -1,20 +1,22 @@
 test = int(input())
-for t in range(test):
-    m = list(input())
-
-    dic = {}
-    result = 'OK'
-    for i in range(len(m)):
-        if m[i] not in dic:
-            dic[m[i]] = 1
+for _ in range(test):
+    M = list(input())
+    result = "OK"
+    alpa = dict()
+    for i in range(len(M)):
+        if M[i] not in alpa:
+            alpa[M[i]] = 1
         else:
-            dic[m[i]] += 1
-        if dic[m[i]] == 4:
-            if m[i - 1] != m[i]:
-                result = 'FAKE'
+            alpa[M[i]] += 1
+
+        if alpa[M[i]] == 4:
+            if M[i-1] != M[i]:
+                result = "FAKE"
                 break
-            elif m[i - 1] == m[i]:
-                dic[m[i]] = 0
-    if 3 in dic.values():
-        result = 'FAKE'
+            else:
+                alpa[M[i]] = 0
+    if 3 in alpa.values():
+        result = "FAKE"
     print(result)
+
+
