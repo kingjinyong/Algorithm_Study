@@ -1,27 +1,52 @@
-test = int(input())
+import sys
+input = sys.stdin.readline
+stk = []
 
 
-stack = []
+def push(i):
+    stk.append(i)
 
-for t in range(test):
-    o = input().split()
 
-    if o[0] == 'push':
-        stack.append(o.pop())
-    elif o[0] == 'pop':
-        if len(stack) == 0:
+def pop():
+    return stk.pop()
+
+
+def size():
+    return len(stk)
+
+
+def empty():
+    if len(stk) == 0:
+        return 1
+    else:
+        return 0
+
+
+def top():
+    return stk[-1]
+
+N = int(input())
+for _ in range(N):
+    order = input().split()
+    order_name = order[0]
+
+    if order_name == "push":
+        push(order[1])
+
+    elif order_name == "pop":
+        if empty():
             print(-1)
         else:
-            print(stack.pop())
-    elif o[0] == 'size':
-        print(len(stack))
-    elif o[0] == 'empty':
-        if len(stack) == 0:
-            print(1)
-        else:
-            print(0)
-    elif o[0] == 'top':
-        if len(stack) == 0:
+            print(pop())
+
+    elif order_name == "size":
+        print(size())
+
+    elif order_name == "empty":
+        print(empty())
+
+    elif order_name == "top":
+        if empty():
             print(-1)
         else:
-            print(stack[-1])
+            print(top())
