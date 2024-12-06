@@ -10,19 +10,20 @@ def solution(n, lost, reserve):
             dic[student] = 2
         else:
             dic[student] = 1
-    print(dic)
+
     for n in dic:
-        if n-1 in dic:
-            if dic[n-1] == 0 and dic[n] == 2:
-                dic[n] -= 1
-                dic[n-1] = 1
-        if n+1 in dic:
-            if dic[n+1] == 0 and dic[n] == 2:
-                dic[n] -= 1
-                dic[n+1] = 1
+        if dic[n] == 2:
+            if n-1 in dic:
+                if dic[n-1] == 0:
+                    dic[n] -= 1
+                    dic[n-1] = 1
+            elif n+1 in dic:
+                if dic[n+1] == 0:
+                    dic[n] -= 1
+                    dic[n+1] = 1
     result = 0
     for i in dic.values():
         if i >= 1:
             result += 1
-    print(dic)
+    # print(dic)
     return result
