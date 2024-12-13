@@ -1,35 +1,48 @@
 import sys
-
 input = sys.stdin.readline
-
-test = int(input())
-
+o = int(input())
 stk = []
 
-for t in range(test):
-    o = list(map(int, input().split()))
 
-    if len(o) > 1:
-        a, b = o[0], o[1]
+def push_num(x):
+    stk.append(x)
+
+
+def peek_pop_print():
+    if stk:
+        print(stk.pop())
     else:
-        a = o[0]
+        print(-1)
 
-    if a == 1:  # 1번 명령이라면
-        stk.append(b)
-    elif a == 2:
-        if len(stk):
-            print(stk.pop())
-        else:
-            print(-1)
-    elif a == 3:
-        print(len(stk))
-    elif a == 4:
-        if len(stk) > 0:
-            print(0)
-        else:
-            print(1)
-    elif a == 5:
-        if len(stk) > 0:
-            print(stk[-1])
-        else:
-            print(-1)
+
+def total_size():
+    print(len(stk))
+
+
+def is_empty():
+    if not stk:
+        print(1)
+    else:
+        print(0)
+
+
+def peek_print():
+    if stk:
+        print(stk[-1])
+    else:
+        print(-1)
+
+
+for _ in range(o):
+    order_list = list(map(int, input().split()))
+
+    if order_list[0] == 1:
+        push_num(order_list[1])
+    if order_list[0] == 2:
+        peek_pop_print()
+    if order_list[0] == 3:
+        total_size()
+    if order_list[0] == 4:
+        is_empty()
+    if order_list[0] == 5:
+        peek_print()
