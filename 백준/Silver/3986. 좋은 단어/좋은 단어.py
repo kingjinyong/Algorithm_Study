@@ -1,18 +1,14 @@
-test = int(input())
+n = int(input())
 
-cnt = 0
-stk = []
-for t in range(test):
-    word = list(input())
+result = 0
+for _ in range(n):
+    string = list(input())
     stk = []
-    stk.append(word.pop(0))
-    while word:
-        if stk and stk[-1] == word[0]:
+    for i in string:
+        if len(stk) != 0 and stk[-1] == i:
             stk.pop()
-            word.pop(0)
         else:
-            stk.append(word.pop(0))
+            stk.append(i)
     if len(stk) == 0:
-        cnt += 1
-    # print(stk)
-print(cnt)
+        result += 1
+print(result)
