@@ -1,22 +1,19 @@
-play, g = map(str, input().split())
+import sys
+input = sys.stdin.readline
+game = {'Y':2, 'F':3, 'O':4}
 
-w = 0
-if g == 'Y':
-    w = 2
-elif g == 'F':
-    w = 3
-else:
-    w = 4
+play_user = {}
 
-ary = []    # 게임 같이 할 사람들
-dic = {}   # 이미 게임을 같이 한 사람들
-cnt = 0
-for p in range(int(play)):
-    player = input()
-    if player not in dic:
-        dic[player] = 1
-        ary.append(player)
-    if len(ary) + 1 == w:
-        ary = []
-        cnt += 1
-print(cnt)
+n, game_type = map(str, input().split())
+
+result = 0
+join = 1
+for _ in range(int(n)):
+    user_name = input()
+    if user_name not in play_user:
+        play_user[user_name] = 1
+        join += 1
+    if join == game[game_type]:
+        join = 1
+        result += 1
+print(result)
