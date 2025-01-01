@@ -1,36 +1,32 @@
 import sys
 input = sys.stdin.readline
-n, k = map(int, input().split())
-# -----------------
-dic = {}
-findmax = []
-for i in range(n):
+
+N, K = map(int,input().split())
+ary = []
+max_l = -1
+
+for _ in range(N):
     g, x = map(int, input().split())
-    dic[x] = g
-    findmax.append(x)
-m = max(findmax)
+    max_l = max(max_l, x)
+    ary.append([g, x])
 
-albert = [0 for i in range(m+1)]
+ary_2 = [0] * (max_l+1)
 
-for i in range(len(albert)):
-    if i in dic.keys():
-        albert[i] = dic[i]
-# ---------------- 각 위치에 맞게 양동이 놓기
+for a in ary:
+    ary_2[a[1]] = a[0]
 
-a = 0
-b = k*2+1   # 1일 경우: 3, 2일 경우: 5, 3일 경우: 7, 4일 경우: 9
-
-many_ice = []
-
-many_ice.append(sum(albert[a:b]))
-temp = sum(albert[a:b])
-
-while b < len(albert)-1:
-    temp -= albert[a]
-    temp += albert[b]
-    a += 1
-    b += 1
-
-    many_ice.append(temp)
-
-print(max(many_ice))
+start = 0
+end = K*2 + 1
+max_ary = -1
+sum_f = sum(ary_2[start:end])
+max_ary = max(max_ary, sum_f)
+# print(ary_2[start:end])
+# print(ary_2)
+# print(sum_f)
+while end < len(ary_2):
+    sum_f -= ary_2[start]
+    sum_f += ary_2[end]
+    max_ary = max(max_ary, sum_f)
+    start += 1
+    end += 1
+print(max_ary)
