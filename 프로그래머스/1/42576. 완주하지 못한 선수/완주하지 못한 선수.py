@@ -1,16 +1,11 @@
 def solution(participant, completion):
     dic = {}
-    for i in participant:
-        if i in dic:
-            dic[i] += 1
-        elif i not in dic:
-            dic[i] = 1
+    for p in participant:
+        dic[p] = dic.get(p, 0) + 1
     
-    for i in completion:
-        if i in dic:
-            dic[i] -= 1
+    for c in completion:
+        dic[c] -= 1
     
-    for i in dic:
-        if dic[i] == 1:
-            answer = i
-    return answer
+    for p in dic:
+        if dic[p] == 1:
+            return p
