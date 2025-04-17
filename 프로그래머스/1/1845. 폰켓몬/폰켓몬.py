@@ -4,7 +4,4 @@ def solution(nums):
         if p not in dic:
             dic[p] = 1
             
-    if len(nums)//2 > len(dic):
-        return len(dic)
-    else:
-        return len(nums)//2
+    return min(len(nums)//2, len(dic))
