@@ -2,22 +2,16 @@ from collections import deque
 test = int(input())
 
 for t in range(test):
-    dic = {}
+    s = set(list(input()))
     ary = list(input())
-    ary_2 = list(input())
+    d = {}
+
     for i in ary:
-        if i in dic:
-            dic[i] += 1
-        else:
-            dic[i] = 1
-    # print(dic)
-    # print(ary)
-
-    m = -1
-
-    for i in dic.keys():
-        m = max(ary_2.count(i), m)
-
+        if i in s:
+            if i in d:
+                d[i] += 1
+            else:
+                d[i] = 1
 
     print("#", end="")
-    print(t+1, m)
+    print(t+1, max(d.values()))
