@@ -8,10 +8,7 @@ for t in range(test):
 
     for i in ary:
         if i in s:
-            if i in d:
-                d[i] += 1
-            else:
-                d[i] = 1
+            d[i] = d.get(i, 0) + 1
 
     print("#", end="")
     print(t+1, max(d.values()))
